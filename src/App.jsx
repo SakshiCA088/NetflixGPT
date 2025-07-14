@@ -1,11 +1,11 @@
-
 import './App.css'
+import Body from './components/Body.jsx'
 
 function App() {
   
   return (
     <>
-      <div className='App text-3xl text-green-800'>hii</div>
+      <Body/>
     </>
   )
 }
