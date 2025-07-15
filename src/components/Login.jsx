@@ -3,15 +3,13 @@ import Header from './Header'
 import { validateData } from '../utils/validate.js'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice.js';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true)
   const [errorMessage, seterrorMessage] = useState(null)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const name = useRef(null)
   const email = useRef(null) //let's us take the reference of dom element
@@ -35,7 +33,8 @@ const Login = () => {
         updateProfile(user, {
           displayName: name.current.value, 
           photoURL: "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp"
-        }).then(() => {
+        })
+        .then(() => {
           const {uid, email, displayName, photoURL} = auth.currentUser;
           dispatch(
             addUser({
@@ -45,7 +44,6 @@ const Login = () => {
               photoURL : photoURL
             })
           )
-          navigate("/browse")
         }).catch((error) => {
           seterrorMessage(error.message)
         });
@@ -64,7 +62,6 @@ const Login = () => {
       .then((userCredential) => {
       const user = userCredential.user;
       console.log(user)
-      navigate("/browse")
       })
       .catch((error) => {
       const errorCode = error.code;
@@ -82,7 +79,7 @@ const Login = () => {
       <Header/>
       <div>
         <img className='absolute top-0 left-0 w-full h-full object-cover z-0'
-          src = "https://cdn.neowin.com/news/images/uploaded/2023/05/1683747988_background-size1920x1080-4e1694a6-75aa-4c36-9d4d-7fb6a3102005-bc5318781aad7f5c8520.jpg"
+          src = "https://assets.nflxext.com/ffe/siteui/vlv3/7d2359a4-434f-4efa-9ff3-e9d38a8bde7f/web/IN-en-20250707-TRIFECTA-perspective_4faa9280-a2c5-4e07-aafc-a45ce43fea09_large.jpg"
           alt = "logo"
         />
       </div>
