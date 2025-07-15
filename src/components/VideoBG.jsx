@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { API_OPTIONS } from '../utils/constants'
-import { createLogger } from 'vite'
+import { API_OPTIONS } from '../utils/constants.js'
 
 const VideoBG = ({ movieId }) => {
   const getMovieVideos = async () => {
