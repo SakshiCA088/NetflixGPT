@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from "../utils/firebase.js";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice.js';
+import { USER_AVATAR } from '../utils/constants.js';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true)
@@ -32,7 +33,7 @@ const Login = () => {
 
         updateProfile(user, {
           displayName: name.current.value, 
-          photoURL: "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp"
+          photoURL: USER_AVATAR
         })
         .then(() => {
           const {uid, email, displayName, photoURL} = auth.currentUser;
@@ -48,8 +49,6 @@ const Login = () => {
           seterrorMessage(error.message)
         });
 
-        console.log(user)
-        
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -61,7 +60,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user)
       })
       .catch((error) => {
       const errorCode = error.code;
