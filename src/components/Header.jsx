@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice.js';
 import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants.js';
-import { toggleGptSearchView } from '../utils/gptSlice.js';
+import { toggleGptSearchView, clearGptMovieResult } from '../utils/gptSlice.js';
 import { changedLang } from '../utils/configSlice.js';
 
 const Header = () => {
@@ -47,6 +47,9 @@ const Header = () => {
   }, [])
 
   const handleGptSearch = () => {
+    if (showGptSearch) {
+    dispatch(clearGptMovieResult());
+  }
     dispatch(toggleGptSearchView())
   }
 
